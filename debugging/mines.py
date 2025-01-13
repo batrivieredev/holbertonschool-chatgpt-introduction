@@ -76,3 +76,20 @@ class Minesweeper:
             try:
                 x = int(input("Enter x coordinate: "))
                 y = int(input("Enter y coordinate: "))
+                if not (0 <= x < self.width and 0 <= y < self.height):
+                    print("Invalid coordinates. Please try again.")
+                    continue
+            except ValueError:
+                print("Invalid input. Please enter valid integers.")
+                continue
+
+            if not self.reveal(x, y):
+                self.print_board(reveal=True)
+                print("Game Over! You hit a mine.")
+                break
+
+
+if __name__ == "__main__":
+    game = Minesweeper(width=10, height=10, mines=10)  # You can adjust width, height, and mines here
+    game.play()
+
